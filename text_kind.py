@@ -22,7 +22,7 @@ def hello_monkey():
  
     resp = twilio.twiml.Response()
     for x in (0,4):
-        resp.message(still_happy[random.randint(1,190)])
+        resp.message(still_happy[8])
     return str(resp)
  
 if __name__ == "__main__":
