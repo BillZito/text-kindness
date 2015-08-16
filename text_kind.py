@@ -6,7 +6,7 @@ saving as a new thing
 
 from flask import Flask, request, redirect
 import twilio.twiml
- 
+import random 
 
 #open and write text to list--should let it throw exception, should let it be personalized based on user
 file = open('bill.txt', 'r')
@@ -21,8 +21,10 @@ def hello_monkey():
     """Respond to incoming calls with a simple text message."""
  
     resp = twilio.twiml.Response()
-    for x in (0,4):
-        resp.message(still_happy[8])
+    for x in (0,2):
+        resp.message(still_happy[random.randint(0,190)])
+    resp.message(still_happy[random.randint(0,190)])
+
     return str(resp)
  
 if __name__ == "__main__":
