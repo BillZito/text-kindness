@@ -51,7 +51,7 @@ def hello_monkey():
 
     #send three messages through said instance
     for x in (0,2):
-        resp.message(still_happy[random.randint(0, num_lines-1)] + message)
+        resp.message(still_happy[random.randint(0, num_lines-1)])
 
     return str(resp)
  
