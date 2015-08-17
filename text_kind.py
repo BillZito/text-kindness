@@ -31,7 +31,7 @@ def hello_monkey():
     #identify their number
     from_number = request.values.get('From', None)
     
-    #if number in our directory above, pick out their name
+    #if number in our directory above, pick out their name and add it to message string to be sent below
     if from_number in callers:
         message = callers[from_number] + ", thanks for the message!"
     
@@ -44,7 +44,7 @@ def hello_monkey():
 
     #send three messages through said instance
     for x in (0,2):
-        resp.message(still_happy[random.randint(0,190)])
+        resp.message(still_happy[random.randint(0,190)] + message)
     resp.message(still_happy[random.randint(0,190)])
 
     return str(resp)
