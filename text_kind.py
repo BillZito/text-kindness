@@ -1,18 +1,12 @@
 """
-From Twilio https://www.twilio.com/docs/quickstart/python/sms/hello-monkey
-should allow us to send replies to texts 
-saving as a new thing
+lots stolen from Twilio https://www.twilio.com/docs/quickstart/python/sms/hello-monkey
+allows user to receive their own message responses 
 """
 
 from flask import Flask, request, redirect
 import twilio.twiml
 import random 
 
-#open and write text to list--should let it throw exception, should let it be personalized based on user
-file = open('bill.txt', 'r')
-still_happy = []
-for line in file:
-	still_happy.append(line)
 
 app = Flask(__name__)
 
@@ -22,6 +16,7 @@ callers = {
     "+14158675310": "Boots",
     "+14158675311": "Virgil",
     "+14103532508": "Bill",
+    "+14109910925": "Mellie",
 }
 
 @app.route("/", methods=['GET', 'POST'])
@@ -38,7 +33,18 @@ def hello_monkey():
     #otherwise, consider them a monkey
     else:
         message = "Monkey, thanks for the message!" 
+
+
+    #open and write text to list--should let it throw exception, should let it be personalized based on user
+    #initalize list
+    still_happy = []
     
+    #initalize file and then fill the list with the file contents
+    file = open('bill.txt', 'r')    
+    for line in file:
+        still_happy.append(line)
+
+
     #make a new instance of a twiml response
     resp = twilio.twiml.Response()
 
