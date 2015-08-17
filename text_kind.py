@@ -15,12 +15,34 @@ for line in file:
 	still_happy.append(line)
 
 app = Flask(__name__)
- 
+
+#list of numbers to look up upon receiving message
+callers = {
+    "+14158675309": "Curious George",
+    "+14158675310": "Boots",
+    "+14158675311": "Virgil",
+    "+14103532508": "Bill",
+}
+
 @app.route("/", methods=['GET', 'POST'])
 def hello_monkey():
-    """Respond to incoming calls with a simple text message."""
- 
+    """Respond to incoming messages with three messages from their list"""
+    
+    #identify their number
+    from_number = request.values.get('From', None)
+    
+    #if number in our directory above, pick out their name
+    if from_number in callers:
+        message = callers[from_number] + ", thanks for the message!"
+    
+    #otherwise, consider them a monkey
+    else:
+        message = "Monkey, thanks for the message!" 
+    
+    #make a new instance of a twiml response
     resp = twilio.twiml.Response()
+
+    #send three messages through said instance
     for x in (0,2):
         resp.message(still_happy[random.randint(0,190)])
     resp.message(still_happy[random.randint(0,190)])
