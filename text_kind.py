@@ -15,7 +15,7 @@ callers = {
     "+14158675309": "Curious George",
     "+14103532508": "BillZ",
     "+14109910925": "Mellie",
-    "+1": "BillC",
+    "+14432547513": "BillC",
 }
 
 @app.route("/", methods=['GET', 'POST'])
@@ -39,18 +39,19 @@ def hello_monkey():
     still_happy = []
     
     #initalize file and then fill the list with the file contents
-    filename = callers[from_number] + ".txt"
-    file = open(filename, 'r')    
+    new_file_name = message + ".txt"
+    file = open(new_file_name, 'r')    
+    num_lines = 0
     for line in file:
         still_happy.append(line)
-
+        num_lines += 1
 
     #make a new instance of a twiml response
     resp = twilio.twiml.Response()
 
     #send three messages through said instance
     for x in (0,2):
-        resp.message(still_happy[random.randint(0,190)] + message)
+        resp.message(still_happy[random.randint(0, num_lines-1)] + message)
 
     return str(resp)
  
