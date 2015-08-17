@@ -1,5 +1,5 @@
 """
-lots stolen from Twilio https://www.twilio.com/docs/quickstart/python/sms/hello-monkey
+lots copied from Twilio https://www.twilio.com/docs/quickstart/python/sms/hello-monkey
 allows user to receive their own message responses 
 """
 
@@ -13,10 +13,9 @@ app = Flask(__name__)
 #list of numbers to look up upon receiving message
 callers = {
     "+14158675309": "Curious George",
-    "+14158675310": "Boots",
-    "+14158675311": "Virgil",
-    "+14103532508": "Bill",
+    "+14103532508": "BillZ",
     "+14109910925": "Mellie",
+    "+1": "BillC",
 }
 
 @app.route("/", methods=['GET', 'POST'])
@@ -28,11 +27,11 @@ def hello_monkey():
     
     #if number in our directory above, pick out their name and add it to message string to be sent below
     if from_number in callers:
-        message = callers[from_number] + ", thanks for the message!"
+        message = callers[from_number]
     
-    #otherwise, consider them a monkey
+    #otherwise, consider them a monkey and respond accordingly
     else:
-        message = "Monkey, thanks for the message!" 
+        message = "Monkey" 
 
 
     #open and write text to list--should let it throw exception, should let it be personalized based on user
@@ -40,7 +39,8 @@ def hello_monkey():
     still_happy = []
     
     #initalize file and then fill the list with the file contents
-    file = open('bill.txt', 'r')    
+    filename = callers[from_number] + ".txt"
+    file = open(filename, 'r')    
     for line in file:
         still_happy.append(line)
 
@@ -51,7 +51,6 @@ def hello_monkey():
     #send three messages through said instance
     for x in (0,2):
         resp.message(still_happy[random.randint(0,190)] + message)
-    resp.message(still_happy[random.randint(0,190)])
 
     return str(resp)
  
