@@ -43,8 +43,8 @@ class Send_morning(Command):
 
 	        #open and write text to list--should let it throw exception, should let it be personalized based on user
     		#initalize list
-    		still_happy = []
-		still_happy1 = []
+    		still_happybill = []
+		still_happyolivia = []
 		still_happy2 = []
 		still_happy3 = []
 		still_happy4 = []
@@ -54,32 +54,32 @@ class Send_morning(Command):
                 #initalize file and then fill the list with the file contents
     		new_file_name = name + "friend.txt"
     		file = open(new_file_name, 'r')    
-    		num_lines = 0
+    		billnum_lines = 0
 
     		for line in file:
-        		still_happy.append(line)
-        		num_lines += 1
+        		still_happybill.append(line)
+        		billnum_lines += 1
 
 		"""doing for olivia"""
 		second_file_name = "Olivia" + "friend.txt"
 		second_file = open(second_file_name, 'r')
-		num_lines = 0
+		olivianum_lines = 0
 		
 		for line in second_file:
-			still_happy1.append(line)
-			num_lines += 1
+			still_happyolivia.append(line)
+			olivianum_lines += 1
 		
 
 		client = TwilioRestClient(account_sid, auth_token)
                 
 		for x in (0, 2):
 			message = client.messages.create(to="+14103532508", from_="+14437753700", 
-					body=still_happy[random.randint(0, num_lines-1)])
+					body=still_happybill[random.randint(0, billnum_lines-1)])
 
 		"""send to Olivia"""
 		for x in (0, 2):
                         message = client.messages.create(to="+15206098877", from_="+14437753700",
-                                        body=still_happy1[random.randint(0, num_lines-1)])
+                                        body=still_happyolivia[random.randint(0, olivianum_lines-1)])
 			
 
 #test of text capability
