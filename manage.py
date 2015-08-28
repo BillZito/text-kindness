@@ -11,7 +11,6 @@ manager = Manager(app)
  
 #list of numbers to look up upon receiving message
 callers = {
-    "+14158675309": "Curious George",
     "+14103532508": "BillZ",
     "+14109910925": "Mellie",
     "+14432547513": "BillC",
@@ -53,7 +52,7 @@ class Send_morning(Command):
 		still_happy6 = []
     
                 #initalize file and then fill the list with the file contents
-    		new_file_name = name + ".txt"
+    		new_file_name = name + "friend.txt"
     		file = open(new_file_name, 'r')    
     		num_lines = 0
 
@@ -61,6 +60,7 @@ class Send_morning(Command):
         		still_happy.append(line)
         		num_lines += 1
 
+		"""not doing for mellie yet
 		second_file_name = "Mellie" + ".txt"
 		second_file = open(second_file_name, 'r')
 		num_lines = 0
@@ -68,6 +68,7 @@ class Send_morning(Command):
 		for line in second_file:
 			still_happy1.append(line)
 			num_lines += 1
+		"""
 
 		client = TwilioRestClient(account_sid, auth_token)
                 
@@ -75,10 +76,11 @@ class Send_morning(Command):
 			message = client.messages.create(to="+14103532508", from_="+14437753700", 
 					body=still_happy[random.randint(0, num_lines-1)])
 
+		"""send to mellie, not sending this
 		for x in (0, 2):
                         message = client.messages.create(to="+14109910925", from_="+14437753700",
                                         body=still_happy1[random.randint(0, num_lines-1)])
-			
+			"""
 
 #test of text capability
 class Send(Command):
