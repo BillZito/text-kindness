@@ -60,15 +60,15 @@ class Send_morning(Command):
         		still_happy.append(line)
         		num_lines += 1
 
-		"""not doing for mellie yet
-		second_file_name = "Mellie" + ".txt"
+		"""doing for olivia"""
+		second_file_name = "Olivia" + "friend.txt"
 		second_file = open(second_file_name, 'r')
 		num_lines = 0
 		
 		for line in second_file:
 			still_happy1.append(line)
 			num_lines += 1
-		"""
+		
 
 		client = TwilioRestClient(account_sid, auth_token)
                 
@@ -76,11 +76,11 @@ class Send_morning(Command):
 			message = client.messages.create(to="+14103532508", from_="+14437753700", 
 					body=still_happy[random.randint(0, num_lines-1)])
 
-		"""send to mellie, not sending this
+		"""send to Olivia"""
 		for x in (0, 2):
-                        message = client.messages.create(to="+14109910925", from_="+14437753700",
+                        message = client.messages.create(to="+15206098877", from_="+14437753700",
                                         body=still_happy1[random.randint(0, num_lines-1)])
-			"""
+			
 
 #test of text capability
 class Send(Command):
