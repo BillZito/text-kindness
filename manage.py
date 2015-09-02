@@ -61,7 +61,7 @@ class Send_morning(Command):
         		billnum_lines += 1
 
 		"""doing for olivia"""
-		second_file_name = "Olivia" + "friend.txt"
+		second_file_name = "Olivia" + ".txt"
 		second_file = open(second_file_name, 'r')
 		olivianum_lines = 0
 		
