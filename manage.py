@@ -58,7 +58,7 @@ class Send_morning(Command):
 
 		#for each line in the file, write it into the list
     		for line in file:
-        		still_happybill.append(line)
+        		still_happybillz.append(line)
         		billnum_lines += 1
 
 		#do the same for olivia and others
@@ -108,7 +108,7 @@ class Send_morning(Command):
                 
 		for x in (0, 2):
 			message = client.messages.create(to="+14103532508", from_="+14437753700", 
-					body=still_happybill[random.randint(0, billnum_lines-1)])
+					body=still_happybillz[random.randint(0, billnum_lines-1)])
 
 		"""send to Olivia and others"""
 		for x in (0, 2):
