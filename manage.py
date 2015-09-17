@@ -43,24 +43,25 @@ class Send_morning(Command):
 
 	        #open and write text to list--should let it throw exception, should let it be personalized based on user
     		#initalize list
-    		still_happybill = []
+    		still_happybillz = []
 		still_happyolivia = []
-		still_happy2 = []
-		still_happy3 = []
-		still_happy4 = []
-		still_happy5 = []
+		still_happyalice = []
+		still_happyhannah = []
+		still_happymellie = []
+		still_happyjenny = []
 		still_happy6 = []
     
                 #initalize file and then fill the list with the file contents
-    		new_file_name = name + "friend.txt"
-    		file = open(new_file_name, 'r')    
+    		first_file_name = "BillZ.txt"
+    		file = open(first_file_name, 'r')    
     		billnum_lines = 0
 
+		#for each line in the file, write it into the list
     		for line in file:
         		still_happybill.append(line)
         		billnum_lines += 1
 
-		"""doing for olivia"""
+		#do the same for olivia and others
 		second_file_name = "Olivia" + ".txt"
 		second_file = open(second_file_name, 'r')
 		olivianum_lines = 0
@@ -69,18 +70,66 @@ class Send_morning(Command):
 			still_happyolivia.append(line)
 			olivianum_lines += 1
 		
+		third_file_name = "Alice" + ".txt"
+		third_file = open(third_file_name, 'r')
+		alicenum_lines = 0
 
+		for line in third_file:
+			still_happyalice.append(line)
+			alicenum_lines += 1
+
+		fourth_file_name = "Mellie" + ".txt"
+		fourth_file = open(fourth_file_name, 'r')
+		mellienum_lines = 0
+
+		for line in fourth_file:
+			still_happymellie.append(line)
+			mellienum_lines += 1
+
+		fifth_file_name = "Jenny" + ".txt"
+		fifth_file = open(fifth_file_name, 'r')
+		jennynum_lines = 0
+	
+		for line in fifth_file:
+			still_happyjenny.append(line)
+			jennynum_lines += 1
+
+		sixth_file_name = "Hannah" + ".txt"
+		sixth_file = open(sixth_file_name, 'r')
+		hannahnum_lines = 0
+
+		for line in sixth_file:
+			still_happyhannah.append(line)
+			hannahnum_lines += 1
+				
+		
+		#open client and send message
 		client = TwilioRestClient(account_sid, auth_token)
                 
 		for x in (0, 2):
 			message = client.messages.create(to="+14103532508", from_="+14437753700", 
 					body=still_happybill[random.randint(0, billnum_lines-1)])
 
-		"""send to Olivia"""
+		"""send to Olivia and others"""
 		for x in (0, 2):
                         message = client.messages.create(to="+15206098877", from_="+14437753700",
                                         body=still_happyolivia[random.randint(0, olivianum_lines-1)])
 			
+		for x in (0, 2):
+			message = client.messages.create(to="+14138414718", from_="+14437753700",
+					body=still_happyalice[random.randint(0, alicenum_lines-1)])
+
+		for x in (0, 2):
+			message = client.messages.create(to="+14109910925", from_="+14437753700",
+					body=still_happymellie[random.randint(0, mellienum_lines-1)])
+
+		for x in (0, 2):
+			message = client.messages.create(to="+14103530094", from_="+14437753700",
+					body=still_happyjenny[random.randint(0, jennynum_lines-1)])
+
+		for x in (0,2):
+			message = client.messages.create(to="+13019436377", from_="+14437753700",
+					body=still_happyhannah[random.randint(0, hannahnum_lines-1)])
 
 #test of text capability
 class Send(Command):
