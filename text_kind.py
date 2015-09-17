@@ -39,7 +39,10 @@ def hello_monkey():
 
     #identify their message
     body = request.values.get('Body', None)
-    
+
+    #make it lowercase for easy parsing    
+    lowerbody = body.lower()
+
     #open and write text to list--should let it throw exception, should let it be personalized based on user
     #initalize list, don't need to do below if body message is something in particular
     still_happy = []
@@ -56,8 +59,12 @@ def hello_monkey():
     resp = twilio.twiml.Response()
 
     #if it's a test, send them back that it was a test
-    if body == "test":
+    if lowerbody == "test":
 	    resp.message("this was a test")
+    
+    #if it's party time, you better be dancing
+    elif lowerbody == "partytime":
+	    resp.message("dance dance dance")
 
     #else, send two messages through said instance
     else: 
