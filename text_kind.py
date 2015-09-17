@@ -6,7 +6,7 @@ allows user to receive their own message responses
 from flask import Flask, request, redirect
 import twilio.twiml
 import random 
-
+import time
 
 app = Flask(__name__)
 
@@ -66,6 +66,11 @@ def hello_monkey():
     elif lowerbody == "partytime":
 	    resp.message("dance dance dance")
 
+    #if it's sleep, wait a little to respond
+    elif lowerbody == "sleep":
+            time.sleep(60)
+	    resp.message("youre asleep")  
+          
     #else, send two messages through said instance
     else: 
 	    for x in (0,2):
