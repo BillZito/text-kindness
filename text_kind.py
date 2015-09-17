@@ -55,24 +55,32 @@ def hello_monkey():
         still_happy.append(line)
         num_lines += 1
 
-    #make a new instance of a twiml response
-    resp = twilio.twiml.Response()
 
     #if it's a test, send them back that it was a test
     if lowerbody == "test":
+	    #make a new instance of a twiml response
+	    resp = twilio.twiml.Response()
 	    resp.message("this was a test")
     
     #if it's party time, you better be dancing
     elif lowerbody == "partytime":
+	    #make a new instance of a twiml response
+    	    resp = twilio.twiml.Response()
 	    resp.message("dance dance dance")
 
     #if it's sleep, wait a little to respond
     elif lowerbody == "sleep":
             time.sleep(60)
+    
+            #make a new instance of a twiml response
+	    resp = twilio.twiml.Response()
 	    resp.message("youre asleep")  
           
     #else, send two messages through said instance
     else: 
+	    #make a new instance of a twiml response
+	    resp = twilio.twiml.Response()
+	    
 	    for x in (0,2):
         	resp.message(still_happy[random.randint(0, num_lines-1)])
 
