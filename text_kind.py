@@ -24,7 +24,7 @@ callers = {
 
 @app.route("/", methods=['GET', 'POST'])
 def hello_monkey():
-    """Respond to incoming messages with three messages from their list"""
+    """Respond to incoming messages with two messages from their list"""
     
     #identify their number
     from_number = request.values.get('From', None)
@@ -37,9 +37,11 @@ def hello_monkey():
     else:
         message = "Monkey" 
 
-
+    #identify their message
+    body = request.values.get('Body', None)
+    
     #open and write text to list--should let it throw exception, should let it be personalized based on user
-    #initalize list
+    #initalize list, don't need to do below if body message is something in particular
     still_happy = []
     
     #initalize file and then fill the list with the file contents
@@ -53,9 +55,14 @@ def hello_monkey():
     #make a new instance of a twiml response
     resp = twilio.twiml.Response()
 
-    #send three messages through said instance
-    for x in (0,2):
-        resp.message(still_happy[random.randint(0, num_lines-1)])
+    #if it's a test, send them back that it was a test
+    if body == "test":
+	    resp.message("this was a test")
+
+    #else, send two messages through said instance
+    else: 
+	    for x in (0,2):
+        	resp.message(still_happy[random.randint(0, num_lines-1)])
 
     return str(resp)
  
