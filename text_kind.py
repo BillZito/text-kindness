@@ -70,7 +70,7 @@ def hello_monkey():
 
     #if it's sleep, wait a little to respond
     elif lowerbody == "sleep":
-            time.sleep(60)
+            time.sleep(2)
     
             #make a new instance of a twiml response
 	    resp = twilio.twiml.Response()
