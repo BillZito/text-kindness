@@ -77,7 +77,7 @@ def hello_monkey():
 	    resp = twilio.twiml.Response()
             for x in (0,6):
           	    resp.message("youre asleep")  
-                    time.sleep(10)
+                    time.sleep(2)
 
     #else, send two messages through said instance
     else: 

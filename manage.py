@@ -18,6 +18,8 @@ callers = {
     "+13019436377": "Hannah",
     "+14138414718": "Alice",
     "+14103530094": "Jenny",
+    "+18147772290": "Matt",
+    "+17186126814": "Kimmy",
 }
 
 #account sid and token
@@ -49,8 +51,9 @@ class Send_morning(Command):
 		still_happyhannah = []
 		still_happymellie = []
 		still_happyjenny = []
-		still_happy6 = []
-    
+		still_happymatt = []
+                still_happykimmy = []    
+
                 #initalize file and then fill the list with the file contents
     		first_file_name = "BillZ.txt"
     		file = open(first_file_name, 'r')    
@@ -102,7 +105,22 @@ class Send_morning(Command):
 			still_happyhannah.append(line)
 			hannahnum_lines += 1
 				
-		
+		seventh_file_name = "Matt" + ".txt"
+                seventh_file = open(seventh_file_name, 'r')
+                mattnum_lines = 0
+               
+                for line in seventh_file:
+                        still_happymatt.append(line)
+                        mattnum_lines += 1
+                       
+                eigth_file_name = "Kimmy" + ".txt"
+                eigth_file_name = open(eigth_file_name, 'r')
+                kimmynum_lines = 0
+               
+                for line in eigth_file:
+                         still_happykimmy.append(line)
+                         kimmynum_lines +=1
+                 
 		#open client and send message
 		client = TwilioRestClient(account_sid, auth_token)
                 
@@ -130,6 +148,15 @@ class Send_morning(Command):
 		for x in (0,2):
 			message = client.messages.create(to="+13019436377", from_="+14437753700",
 					body=still_happyhannah[random.randint(0, hannahnum_lines-1)])
+
+                for x in (0,2):
+                        message = client.messages.create(to="+18147772290", from_="+14437753700",
+                                        body=still_happymatt[random.randint(0, mattnum_lines-1)])
+
+                for x in (0,2):
+                        message = client.messages.create(to="+17186126814", from_="+14437753700",
+                                        body=still_happykimmy[random.randint(0, kimmynum_lines-1)])
+
 
 #test of text capability
 class Send(Command):
