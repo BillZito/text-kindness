@@ -21,6 +21,7 @@ callers = {
     "+14138414718": "Alice",
     "+14103530094": "Jenny",
     "+18147772290": "Matt",
+    "+17186126814": "Kimmy",
 }
 
 @app.route("/", methods=['GET', 'POST'])
@@ -74,9 +75,9 @@ def hello_monkey():
     
             #make a new instance of a twiml response
 	    resp = twilio.twiml.Response()
-            for x in (0,2):
+            for x in (0,6):
           	    resp.message("youre asleep")  
-                    time.sleep(2)
+                    time.sleep(10)
 
     #else, send two messages through said instance
     else: 
