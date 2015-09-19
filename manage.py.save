@@ -1,0 +1,73 @@
+from flask import Flask, request, redirect
+from flask.ext.script import Manager
+from flask.ext.script import Command
+from twilio.rest import TwilioRestClient
+import twilio.twiml
+import random 
+
+#list of numbers to look up upon receiving message
+callers = {
+    "+14158675309": "Curious George",
+    "+14103532508": "BillZ",
+    "+14109910925": "Mellie",
+    "+14432547513": "BillC",
+    "+15206098877": "Olivia",
+    "+13019436377": "Hannah",
+    "+14138414718": "Alice",
+    "+14103530094": "Jenny",
+}
+
+class send_morning(Command):
+	"send daily morning message from the list" 
+	
+	def send_it():
+    	"""In the morning, send them a random message from their list"""
+    
+		#identify their number
+    		from_number = "+14103532508"
+    
+	        #if number in our directory above, pick out their name and add it to message string to be sent below
+    		if from_number in callers:
+        		message = callers[from_number]
+    
+    		#otherwise, consider them a monkey and respond accordingly
+    		else:
+        		message = "Monkey" 
+
+
+	        #open and write text to list--should let it throw exception, should let it be personalized based on user
+    		#initalize list
+    		still_happy = []
+    
+    		#initalize file and then fill the list with the file contents
+    		new_file_name = message + ".txt"
+    		file = open(new_file_name, 'r')    
+    		num_lines = 0
+    		for line in file:
+        		still_happy.append(line)
+        		num_lines += 1
+
+	        client = TwilioRestClient(account_sid, auth_token)
+
+		for x in (0,2):
+	                message = client.messages.create(to="+14103532508", from_="+14437753700", body=still_happy[random.randint(0, num_lines-1)
+class Send(Command):
+	"send a message to myself"
+	
+	def run(self):
+		client = TwilioRestClient(account_sid, auth_token)
+ 		message = client.messages.create(to="+14103532508", from_="+14437753700",
+                                     body="Hello there!")
+
+class Hello(Command):
+        "prints hello world"
+
+        def run(self):
+                print "bill is a boss"
+
+
+manager.add_command('hello', Hello())
+manager.add_command('send', Send())
+
+if __name__ == "__main__":
+	manager.run()

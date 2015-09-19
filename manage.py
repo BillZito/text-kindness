@@ -141,7 +141,7 @@ class Send_morning(Command):
 			message = client.messages.create(to="+14109910925", from_="+14437753700",
 					body=still_happymellie[random.randint(0, mellienum_lines-1)])
 
-		for x in (0, 2):
+		for x in (0, 1):
 			message = client.messages.create(to="+14103530094", from_="+14437753700",
 					body=still_happyjenny[random.randint(0, jennynum_lines-1)])
 
