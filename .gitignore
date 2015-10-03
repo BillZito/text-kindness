@@ -60,3 +60,6 @@ target/
 # from heroku flask guide
 venv
 *.pyc
+
+#all deleted files
+*~
