@@ -23,8 +23,6 @@ callers = {
 }
 
 #account sid and token
-account_sid = "AC391d717b317d85ec6bc4278575769ab2"
-auth_token = "e306bcddeef2de9a43a7fac69c835eec"
 
 #send morning message
 class Send_morning(Command):
