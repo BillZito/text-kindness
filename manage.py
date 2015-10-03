@@ -41,6 +41,7 @@ class Send_morning(Command):
         		name = "Monkey" 
 
 
+		# everything below here is ugly, redundant code, but it was the most efficient as a quick test and will be cleaned up
 	        #open and write text to list--should let it throw exception, should let it be personalized based on user
     		#initalize list
     		still_happybillz = []
